@@ -11,7 +11,7 @@
 <a href="FirstPage.jsp"> <img src="logo.png"> </a>
 </div>
 <div class="nav">
-<p> Password Reset </p>
+<a> Password Reset </a>
 </div> 
 
 
