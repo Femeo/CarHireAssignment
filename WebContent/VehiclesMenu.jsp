@@ -14,8 +14,8 @@
 </div>
 
 <div class="nav">
-<a href="#">Vehicles</a>
-<a href="#">Book</a>
+<a href="VehiclesMenu.jsp">Vehicles</a>
+<a href="BookNow.jsp">Book</a>
 <a href="#">Account</a>
 </div>
 
