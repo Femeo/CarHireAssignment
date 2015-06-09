@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Homepage</title>
+<title>Vehicles Menu</title>
 <link rel="stylesheet" type = "text/css" href="Index.css">
 </head>
 <body>
@@ -13,12 +13,17 @@
 </div>
 
 <div class="nav">
-<a href="VehiclesMenu.jsp">Vehicles</a>
+<a href="#">Vehicles</a>
 <a href="#">Book</a>
 <a href="#">Account</a>
 </div>
 
-<h1> Cars Currently Available... </h1>
+<div class="options">
+<a href="#"> View all Vehicles </a><br><br><br>
+<a href="#"> View all Available Vehicles </a><br><br><br>
+<a href="#"> View all Unavailable Vehicles </a>
+</div>
 
 </body>
 </html>
+

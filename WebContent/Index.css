@@ -17,9 +17,15 @@ img {
 	font-size: 380%;
 	margin: 5%;
 }
-
-p {
+h1 {
 	font-size: 150% ;
  	margin: 5% ;
  	font-family: sans-serif ;
+}
+.options {
+	text-align: center ;
+	margin: 3% ; 
+	text-decoration: underline; 
+	text-color: BLACK ;
+	font-size: 200% ;
 }
