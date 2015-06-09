@@ -19,12 +19,12 @@
 <a href="#">Account</a>
 </div>
 
-<nav class="menu">
+<nav id="menu">
 
 <ul class="parent-menu">
 
-<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="View All Vehicles" id="viewVehicles"></form></li><br><br>
-<li><a href="#">View All Available Vehicles</a>
+<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="View All Vehicles" id="viewVehicles"></form></li>
+<li><form><input type="submit" value="View All Available Vehicles" id="viewVehicles"></form>
 
 	<ul>
 	<li><form action="AvailableVehicles" method="post">
@@ -32,9 +32,9 @@
 	Untill:<br><input type="date" name="endDate"><br><br>
 	<input type="submit" name="go" value="Get Vehicles"></form></li>
 	</ul>
-
-</div>
-
+</li>
+</ul>
+</nav>
 </body>
 </html>
 
