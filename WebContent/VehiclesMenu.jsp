@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div class="header">
+<div class="logo">
 <a href="Index.jsp">
 <img src="logo.png">
 </a>

@@ -6,17 +6,16 @@
 </head>
 <body>
 
-<div class="header">
-<a href="Index.jsp">
-<img src="logo.png">
-</a>
+<div class="logo">
+<a href="Index.jsp"> <img src="logo.png"> </a>
 </div>
-
 <div class="nav">
 <a href="VehiclesMenu.jsp">Vehicles</a>
 <a href="#">Book</a>
 <a href="#">Account</a>
 </div>
+
+
 
 <h1> Cars Currently Available... </h1>
 
