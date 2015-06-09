@@ -3,10 +3,10 @@
 	border-bottom: solid;
 	border-bottom-color: BLACK ;
 }
-.nav p {
+.nav a {
 	font-family: sans-serif ;
 	font-size: 150% ;
-	margin: 0% ;
+	margin: 5% ;
 	color: black ;
 	text-decoration: none;
 }
@@ -132,9 +132,5 @@ h1 {
    84% { top: 0px; opacity: 1; }
    96% { top: 0px; opacity: 1; z-index: 0; }
    100%{ top: 325px; opacity: 0; z-index: 0; }
-}
-
-.email  {
-	text-align: center ;
 }
 
