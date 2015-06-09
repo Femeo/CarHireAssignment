@@ -1,0 +1,65 @@
+.nav {
+	text-align: center ;
+	border-bottom: solid;
+	border-bottom-color: BLACK ;
+}
+.nav a {
+	font-family: sans-serif ;
+	font-size: 200% ;
+	margin: 5% ;
+	color: black ;
+	text-decoration: none;
+}
+.logo {
+	text-align: center;
+}
+h1 {
+	font-size: 150% ;
+ 	margin: 5% ;
+ 	font-family: sans-serif ;
+}
+.options {
+	text-align: center ;
+	margin: 3% ; 
+	text-decoration: underline; 
+	font-size: 200% ;
+}
+
+.option a { 
+	color: black ; 
+}
+
+table {
+	width: 100%;
+	text-align: center;
+}
+td#picture {
+	padding-top: 5%;
+}
+td#picture img {
+	width: 25%;
+	hight: 25%;
+}
+td#name {
+	color: #003366;
+	font-size: 200%;
+}
+td#price {
+	color: #424242;
+	font-size: 175%;
+	font-weight: bold;
+}
+td form#hire button {
+	vertical-align: middle;
+	color: #003366;
+	text-decoration: none;
+	font-size: 200%;
+}
+td button {
+	vertical-align: top;
+}
+td button {
+	color: #003366;
+	text-decoration: none;
+	font-size: 200%;
+}

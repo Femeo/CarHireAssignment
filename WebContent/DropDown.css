@@ -1,0 +1,113 @@
+.menu ul ul {
+	display: none;
+}
+
+.menu ul li:hover > ul {
+	display: block;
+}
+
+.menu ul { 
+	border-radius: 10px;  
+	list-style: none;
+	position: relative;
+	width: 100ex;
+	height: 10%;
+	font-size: 160%;
+	z-index: 1;
+}
+
+.menu form {
+
+	font-size: 120%;
+	color:BLACK;
+	padding-top: 21px;
+	padding-bottom: 21px;
+}
+
+.menu ul:after {
+		content: ""; 
+		clear: both; 
+		display: block;
+}
+
+.menu ul li {
+	float: left;
+	margin-right: 1.5%;
+}
+
+
+.menu ul li:hover {
+		background: #808080 ;
+}
+
+.menu ul li:hover a {
+			color: #fff;
+}
+	
+.menu ul li a {
+		display: block; 
+		padding: 25px 60px;
+		color: BLACK; 
+		text-decoration: none;
+		font-family: sans-serif;
+		font-size: xx-large;
+}
+
+#viewVehicles {
+		display: block; 
+		padding: 25px 60px;
+		color: BLACK; 
+		text-decoration: none;
+		background: transparent;
+		border: none;
+		font-family: sans-serif;
+		font-size: 33px;
+}
+
+.menu ul ul { 
+	border-radius: 0px; 
+	padding: 0px;
+	position: absolute; 
+	top: 100%;
+	width: 25%;
+	height: auto;
+}
+
+.menu ul ul li {
+		float: none; 
+		position: relative;
+		font-size: 18px;
+		padding-left: 5px;
+		color: BLACK;
+		width: 139%;
+		text-align: center;
+}
+
+.menu ul ul li a {
+		padding: 15px 40px;
+		color: #fff;
+}	
+
+.menu ul ul li a:hover {
+		background: #808080;
+		color:WHITE;
+}
+
+#viewVehicles:hover {
+		background: #808080;
+		color:WHITE;
+}
+
+.menu ul ul ul {
+	position: absolute; 
+	left: 100%; 
+	top:0;
+	color: BLACK;
+	width: 120%;
+}
+
+.dropDown {
+	
+	font-size: 120%;
+	color:BLACK;
+}
