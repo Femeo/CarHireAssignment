@@ -25,7 +25,7 @@
 </ul>
 </nav>
 <nav id="main">
-<table class="items">
+<table class="vehicles">
 <%
 
 List<VehicleBean> allVehicles = (List<VehicleBean>)request.getAttribute("Results");
@@ -40,7 +40,7 @@ for (VehicleBean i : allVehicles) {
 	+ "<td id='price'> Price Per Day: £"  + i.getPricePerDay() + "</td>"
 	+ "</tr>"
 	+ "<tr>"
-	+ "<td><form action='ItemView' action='post'><input type='hidden' name='ItemID' value='" + i.getVehicleID() + "'><input type='submit' id='hire' value='Hire Vehicle'></form></td>"
+	+ "<td><form action='singleServlet' method='post'><input type='hidden' name='vehicleID' value='" + i.getVehicleID() + "'><input type='submit' id='hire' value='Hire Vehicle'></form></td>"
 	+ "</tr>");
 	
 }
