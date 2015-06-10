@@ -2,6 +2,7 @@ package carHireProject;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,6 +60,19 @@ public class MainServlet extends HttpServlet {
 			addVehicle(request,response);
 			request.getRequestDispatcher("AddVehicle.jsp").forward(request, response);
 			break;
+		case "ListAllVehicles":
+			ListAllVehicles(request, response);
+			request.getRequestDispatcher("//JSP HERE \\").forward(request,  response);
+			break;
+		case "categoriseVehicles":
+			categoriseVehicles(request, response);
+			request.getRequestDispatcher("//JSP HERE\\").forward(request,  response);
+			break;
+		case "HireVehicle":
+			HireVehicle(request,response);
+			request.getRequestDispatcher("//JSP HERE\\").forward(request, response);
+			break;
+			
 		
 			
 			
@@ -225,6 +239,27 @@ public class MainServlet extends HttpServlet {
 	public void HireVehicle(HttpServletRequest request, HttpServletResponse response){
 		
 		try{
+			DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LoginBean person = new LoginBean();
+			person = (LoginBean) session.getAttribute("CurrentUser");
+			int user_id = person.getCustomerID();
+			int vehicle_id = Integer.parseInt(request.getParameter("VehicleID"));
+			
+			PreparedStatement statement = connection.prepareStatement("insert into contracts values(?,?,?,?,?);");
+			
+			statement.setInt(2,  user_id);
+			statement.setInt(3,  vehicle_id);
+			
+			LocalDate startDate = LocalDate.parse(request.getParameter("startDate"),dt);
+			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"), dt);
+			
+			statement.setString(4, startDate.toString());
+			statement.setString(5, endDate.toString());
+			
+			statement.execute();
+		}
+		catch (Exception e){
+			System.out.println("Exception" + e);
 			
 		}
 	}
@@ -234,52 +269,7 @@ public class MainServlet extends HttpServlet {
 
 /*  
 
-		public void placeBid(HttpServletRequest request, HttpServletResponse response) {
-		
-		try {
-		double price = Double.parseDouble(request.getParameter("bid"));				
-		LoginBean person= new LoginBean();		
-		person=(LoginBean) session.getAttribute("currentUser");
-		int user_id = person.getUserID();
-		int item_id = Integer.parseInt(request.getParameter("ItemID"));
-		
-			PreparedStatement statement = connection.prepareStatement("insert into bids values(?,?,?);");
-			
-			statement.setInt(1, user_id);
-			statement.setInt(2, item_id);
-			statement.setDouble(3, price);
-			
-			statement.execute();
-			
-			ResultSet rs = statement.executeQuery("SELECT * from homepage") ;
-			List<ItemsBean> allItems = new ArrayList<ItemsBean>() ;
-			DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			DateTimeFormatter tt = DateTimeFormatter.ofPattern("HH:mm:ss");
-			int i = 0 ;
-			while (rs.next()){
-				System.out.println(rs.getString(9)); 
-				LocalDate startDate = LocalDate.parse(rs.getString(9), dt);
-				LocalTime startTime = LocalTime.parse(rs.getString(10), tt);
-				int itemID = Integer.parseInt(rs.getString(1));
-				double MaxPrice = Double.parseDouble(rs.getString(6));
-				double reservePrice = Double.parseDouble(rs.getString(8));
-				boolean on_sale = Boolean.parseBoolean(rs.getString(7));
-				ItemsBean newItem = new ItemsBean(itemID, rs.getString(2), 
-												rs.getString(3),
-												rs.getString(4),
-												rs.getString(5),
-												MaxPrice, on_sale, reservePrice, startDate, startTime);
-				System.out.println(i);
-				i++;
-				allItems.add(newItem);
-			}
-			request.setAttribute("Results", allItems);
-			
-		}
-		catch(Exception e){
-			System.out.println("Exception" + e );
-		}
-	}
+	
 	
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String method =request.getParameter("go");
