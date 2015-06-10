@@ -16,6 +16,8 @@ public class UserBean {
 		this.DrivingLicense = DrivingLicense ;
 		this.AddressID = AddressID ; 
 	}
+	
+	public UserBean() {}
 
 
 public int getCustomerID() {
