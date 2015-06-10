@@ -24,6 +24,8 @@ public class VehicleBean {
 		this.NoOfDoors = NoOfDoors ;
 		this.MaxWeight = MaxWeight ; 
 	}
+	
+	public VehicleBean() {}
 
 	public int getVehicleID() {
 		return VehicleID;
