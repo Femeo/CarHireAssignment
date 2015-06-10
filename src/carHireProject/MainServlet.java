@@ -47,6 +47,21 @@ public class MainServlet extends HttpServlet {
 		String method = request.getParameter("go");
 		System.out.println(method);
 		switch (method) {
+		case "LoginCustoemr": 
+			LoginCustomer(request, response);
+			request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
+			break;
+		case "LoginStaff":
+			LoginStaff(request, response);
+			request.getRequestDispatcher("StaffLogin.jsp").forward(request, response);
+			break;
+		case "addVehicle":
+			addVehicle(request,response);
+			request.getRequestDispatcher("AddVehicle.jsp").forward(request, response);
+			break;
+		
+			
+			
 		
 		}
 	}
@@ -115,12 +130,156 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
+	private void addVehicle(HttpServletRequest request, HttpServletResponse response){
+		
+		try{
+			String category = request.getParameter("Category");
+			String make = request.getParameter("Make");
+			String model = request.getParameter("Model");
+			Double engineSize = Double.parseDouble(request.getParameter("EngineSize"));
+			Double pricePerDay = Double.parseDouble(request.getParameter("PricePerDay"));
+			String fuelType = request.getParameter("FuelType");
+			String numberOfDoors = request.getParameter("NoOfDoors");
+			String maxWeight = request.getParameter("MaxWeight");
+			String picture = request.getParameter("Picture");
+			
+			PreparedStatement statement = connection.prepareStatement("insert into vehicles values(?,?,?,?,?,?,?,?,?,?);") ;
+			
+			statement.setString(1, null);
+			statement.setString(2,  category);
+			statement.setString(3, make);
+			statement.setString(4, model);
+			statement.setDouble(5, engineSize);
+			statement.setDouble(6, pricePerDay);
+			statement.setString(7,  fuelType);
+			statement.setString(8, numberOfDoors);
+			statement.setString(9, maxWeight);
+			statement.setString(10, picture);
+			
+			statement.execute();
+			
+		}
+		catch(Exception e){
+			System.out.println("Exception" + e);
+		}
+		
+	}
+	
+	private void ListAllVehicles(HttpServletRequest request, HttpServletResponse response){
+		try{
+			ResultSet rs = statement.executeQuery("SELECT * from vehicles");
+			List<VehicleBean> allVehicles = new ArrayList<VehicleBean>();
+			while (rs.next()){
+				int VehicleID = Integer.parseInt(rs.getString(1));
+				String category = rs.getString(2);
+				String Make = rs.getString(3);
+				String model = rs.getString(4);
+				float engineSize = Float.parseFloat(rs.getString(5));				
+				float pricePerDay = Float.parseFloat(rs.getString(6));
+				String FuelType = rs.getString(7);
+				String Doors = rs.getString(8);
+				String Weight = rs.getString(9);
+
+				
+				VehicleBean newVehicle = new VehicleBean(VehicleID, category, Make, model, engineSize, pricePerDay, FuelType, Doors, Weight);
+
+				allVehicles.add(newVehicle);
+			}
+			request.setAttribute("Results", allVehicles);
+				
+		}
+		catch(Exception e){
+			System.out.println("Exception" + e);
+		}
+	}
+	
+	private void categoriseVehicles(HttpServletRequest request, HttpServletResponse response){
+		try{
+			String cat = request.getParameter("go");
+			PreparedStatement statement = connection.prepareStatement("Select * from ");
+			statement.setString(1, cat);
+			ResultSet rs = statement.executeQuery();
+			List<VehicleBean> allVehicles = new ArrayList<VehicleBean>();
+			while (rs.next()){
+				int VehicleID = Integer.parseInt(rs.getString(1));
+				String category = rs.getString(2);
+				String Make = rs.getString(3);
+				String model = rs.getString(4);
+				float engineSize = Float.parseFloat(rs.getString(5));				
+				float pricePerDay = Float.parseFloat(rs.getString(6));
+				String FuelType = rs.getString(7);
+				String Doors = rs.getString(8);
+				String Weight = rs.getString(9);
+				VehicleBean newVehicle = new VehicleBean(VehicleID, category, Make, model, engineSize, pricePerDay, FuelType, Doors, Weight);
+				allVehicles.add(newVehicle);
+				
+			}
+			request.setAttribute("Results", allVehicles);
+					
+		}
+		catch(Exception e){
+			System.out.println("Exception" + e);
+		}
+	}
+	
+	public void HireVehicle(HttpServletRequest request, HttpServletResponse response){
+		
+		try{
+			
+		}
+	}
 }
 
 
 
 /*  
- 
+
+		public void placeBid(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+		double price = Double.parseDouble(request.getParameter("bid"));				
+		LoginBean person= new LoginBean();		
+		person=(LoginBean) session.getAttribute("currentUser");
+		int user_id = person.getUserID();
+		int item_id = Integer.parseInt(request.getParameter("ItemID"));
+		
+			PreparedStatement statement = connection.prepareStatement("insert into bids values(?,?,?);");
+			
+			statement.setInt(1, user_id);
+			statement.setInt(2, item_id);
+			statement.setDouble(3, price);
+			
+			statement.execute();
+			
+			ResultSet rs = statement.executeQuery("SELECT * from homepage") ;
+			List<ItemsBean> allItems = new ArrayList<ItemsBean>() ;
+			DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			DateTimeFormatter tt = DateTimeFormatter.ofPattern("HH:mm:ss");
+			int i = 0 ;
+			while (rs.next()){
+				System.out.println(rs.getString(9)); 
+				LocalDate startDate = LocalDate.parse(rs.getString(9), dt);
+				LocalTime startTime = LocalTime.parse(rs.getString(10), tt);
+				int itemID = Integer.parseInt(rs.getString(1));
+				double MaxPrice = Double.parseDouble(rs.getString(6));
+				double reservePrice = Double.parseDouble(rs.getString(8));
+				boolean on_sale = Boolean.parseBoolean(rs.getString(7));
+				ItemsBean newItem = new ItemsBean(itemID, rs.getString(2), 
+												rs.getString(3),
+												rs.getString(4),
+												rs.getString(5),
+												MaxPrice, on_sale, reservePrice, startDate, startTime);
+				System.out.println(i);
+				i++;
+				allItems.add(newItem);
+			}
+			request.setAttribute("Results", allItems);
+			
+		}
+		catch(Exception e){
+			System.out.println("Exception" + e );
+		}
+	}
 	
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String method =request.getParameter("go");
@@ -170,187 +329,8 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
+	
 
-	
-	private void allItems(HttpServletRequest request, HttpServletResponse response) {
-		try{
-		ResultSet rs = statement.executeQuery("SELECT * from homepage") ;
-		List<ItemsBean> allItems = new ArrayList<ItemsBean>() ;
-		DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter tt = DateTimeFormatter.ofPattern("HH:mm:ss");
-		int i = 0 ;
-		while (rs.next()){
-			System.out.println(rs.getString(9)); 
-			LocalDate startDate = LocalDate.parse(rs.getString(9), dt);
-			LocalTime startTime = LocalTime.parse(rs.getString(10), tt);
-			int itemID = Integer.parseInt(rs.getString(1));
-			double MaxPrice = Double.parseDouble(rs.getString(6));
-			double reservePrice = Double.parseDouble(rs.getString(8));
-			boolean on_sale = Boolean.parseBoolean(rs.getString(7));
-			ItemsBean newItem = new ItemsBean(itemID, rs.getString(2), 
-											rs.getString(3),
-											rs.getString(4),
-											rs.getString(5),
-											MaxPrice, on_sale, reservePrice, startDate, startTime);
-			System.out.println(i);
-			i++;
-			allItems.add(newItem);
-		}
-		request.setAttribute("Results", allItems);
-		
-	}
-	catch(Exception e){
-		System.out.println("Exception" + e );
-	}
-	}
-	
-	private void refineItems(HttpServletRequest request, HttpServletResponse response) {
-		try{
-			String cat =request.getParameter("go");
-			PreparedStatement statement = connection.prepareStatement("Select * from homepage where category = ?") ;			
-			statement.setString(1, cat);			
-			ResultSet rs = statement.executeQuery();
-			List<ItemsBean> allItems = new ArrayList<ItemsBean>() ;
-			DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			DateTimeFormatter tt = DateTimeFormatter.ofPattern("HH:mm:ss");
-			int i = 0 ;
-			while (rs.next()){
-				System.out.println(rs.getString(9)); 
-				LocalDate startDate = LocalDate.parse(rs.getString(9), dt);
-				LocalTime startTime = LocalTime.parse(rs.getString(10), tt);
-				int itemID = Integer.parseInt(rs.getString(1));
-				double MaxPrice = Double.parseDouble(rs.getString(6));
-				double reservePrice = Double.parseDouble(rs.getString(8));
-				boolean on_sale = Boolean.parseBoolean(rs.getString(7));
-				ItemsBean newItem = new ItemsBean(itemID, rs.getString(2), 
-												rs.getString(3),
-												rs.getString(4),
-												rs.getString(5),
-												MaxPrice, on_sale, reservePrice, startDate, startTime);
-				allItems.add(newItem);
-			}
-			request.setAttribute("Results", allItems);
-			
-		}
-		catch(Exception e){
-			System.out.println("Exception" + e );
-		}
-		
-	}
-	
-	private void listItem(HttpServletRequest request, HttpServletResponse response) {
-	
-	try {	
-			String title = request.getParameter("title") ;
-			String category = request.getParameter("category");
-			String description = request.getParameter("description") ;
-			String picture = request.getParameter("picture") ;
-			Double price = Double.parseDouble(request.getParameter("price"));
-			Double reserve_price = Double.parseDouble(request.getParameter("reserve_price"));
-			LocalDate date = LocalDate.now();
-			LocalTime time = LocalTime.now();
-			String newDate = date.toString();
-			String newTime = time.toString();
-			
-			PreparedStatement statement = connection.prepareStatement("insert into items values(?,?,?,?,?,?,?,?,?,?);") ;
-			
-			statement.setString(1, null);
-			statement.setString(2, title);
-			statement.setString(3, category);
-			statement.setString(4, description);
-			statement.setString(5, picture);
-			statement.setDouble(6, price);
-			statement.setInt(7,1);
-			statement.setDouble(8, reserve_price);
-			statement.setString(9, newDate);
-			statement.setString(10, newTime);
-			
-			System.out.println("1");
-			
-			statement.execute();
-			
-			System.out.println("2");
-			
-			PreparedStatement statement2 = connection.prepareStatement("call getItemID(?,?);") ;
-			
-			statement2.setString(1,title);
-			statement2.setString(2,description);
-			
-			System.out.println("3");
-			
-			ResultSet rs = statement2.executeQuery();
-			
-			System.out.println("4");
-			
-			while (rs.next()) {
-			String ID = rs.getString(1);
-			System.out.println(ID);
-			
-			
-			
-			PreparedStatement statement3 = connection.prepareStatement("insert into bids values(?,?,?);");
-			
-			statement3.setInt(1,1000000);
-			statement3.setString(2, ID);
-			statement3.setDouble(3, 00.00);
-			
-			
-			statement3.execute();
-			}
-		
-		}
-		catch(SQLException e) {
-			System.out.println("Exeception " + e);
-		}
-	
-	}
-	
-	public void placeBid(HttpServletRequest request, HttpServletResponse response) {
-		
-		try {
-		double price = Double.parseDouble(request.getParameter("bid"));				
-		LoginBean person= new LoginBean();		
-		person=(LoginBean) session.getAttribute("currentUser");
-		int user_id = person.getUserID();
-		int item_id = Integer.parseInt(request.getParameter("ItemID"));
-		
-			PreparedStatement statement = connection.prepareStatement("insert into bids values(?,?,?);");
-			
-			statement.setInt(1, user_id);
-			statement.setInt(2, item_id);
-			statement.setDouble(3, price);
-			
-			statement.execute();
-			
-			ResultSet rs = statement.executeQuery("SELECT * from homepage") ;
-			List<ItemsBean> allItems = new ArrayList<ItemsBean>() ;
-			DateTimeFormatter dt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			DateTimeFormatter tt = DateTimeFormatter.ofPattern("HH:mm:ss");
-			int i = 0 ;
-			while (rs.next()){
-				System.out.println(rs.getString(9)); 
-				LocalDate startDate = LocalDate.parse(rs.getString(9), dt);
-				LocalTime startTime = LocalTime.parse(rs.getString(10), tt);
-				int itemID = Integer.parseInt(rs.getString(1));
-				double MaxPrice = Double.parseDouble(rs.getString(6));
-				double reservePrice = Double.parseDouble(rs.getString(8));
-				boolean on_sale = Boolean.parseBoolean(rs.getString(7));
-				ItemsBean newItem = new ItemsBean(itemID, rs.getString(2), 
-												rs.getString(3),
-												rs.getString(4),
-												rs.getString(5),
-												MaxPrice, on_sale, reservePrice, startDate, startTime);
-				System.out.println(i);
-				i++;
-				allItems.add(newItem);
-			}
-			request.setAttribute("Results", allItems);
-			
-		}
-		catch(Exception e){
-			System.out.println("Exception" + e );
-		}
-	}
 	
 	public void viewMyItemsOnSale(HttpServletRequest request, HttpServletResponse response) {
 	
