@@ -62,7 +62,7 @@ public class MainServlet extends HttpServlet {
 			break;
 		case "ListAllVehicles":
 			ListAllVehicles(request, response);
-			request.getRequestDispatcher("//JSP HERE \\").forward(request,  response);
+			request.getRequestDispatcher("AllVehicleView.jsp").forward(request,  response);
 			break;
 		case "categoriseVehicles":
 			categoriseVehicles(request, response);
@@ -70,9 +70,11 @@ public class MainServlet extends HttpServlet {
 			break;
 		case "HireVehicle":
 			HireVehicle(request,response);
-			request.getRequestDispatcher("//JSP HERE\\").forward(request, response);
+			request.getRequestDispatcher("BookNow.jsp").forward(request, response);
 			break;
-			
+		case "AvailableVehicles":
+			AvailableVehicles(request, response);
+			request.getRequestDispatcher("VehiclesMenu.jsp").forward(request, response);
 		
 			
 			
@@ -80,6 +82,15 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
+	private void AvailableVehicles(HttpServletRequest request,
+			HttpServletResponse response) {
+		try{
+			
+			
+		}
+		catch(Exception e){}
+	}
+
 	public void destroy() {
 		if(connection != null){
 			try {
