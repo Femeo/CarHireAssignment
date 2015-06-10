@@ -7,6 +7,9 @@
 </head>
 <body>
 
+<button onClick="location.href='FirstPage.jsp'" id="logout">Log Out</button>
+
+
 <div class="logo">
 <a href="Index.jsp">
 <img src="logo.png">

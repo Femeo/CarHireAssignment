@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>First Page</title>
-<link rel="stylesheet" type = "text/css" href="Index.css">
+<link rel="stylesheet" type = "text/css" href="FirstPage.css">
 </head>
 <body>
 

@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<button onClick="location.href='FirstPage.jsp'" id="logout">Log Out</button>
 
 <div class="logo">
 <a href="StaffIndex.jsp"> <img src="logo.png"> </a>
@@ -15,7 +16,7 @@
 <div class="nav">
 <a href="AddVehicle.jsp">Add Vehicle</a>
 <a href="RemoveVehicle.jsp">Remove Vehicle</a>
-<a href="Reservations.jsp">Reservations</a>
+<a href="ReservationsMenu.jsp">Reservations</a>
 <a href="AllVehicles.jsp">All Vehicles</a>
 </div>
 

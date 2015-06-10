@@ -1,0 +1,21 @@
+.nav {
+	text-align: center ;
+	border-bottom: solid;
+	border-bottom-color: BLACK ;
+}
+.nav a {
+	font-family: sans-serif ;
+	font-size: 150% ;
+	margin: 5% ;
+	color: black ;
+	text-decoration: none;
+}
+.logo {
+	text-align: center;
+
+}
+h1 {
+	font-size: 150% ;
+ 	margin: 5% ;
+ 	font-family: sans-serif ;
+}

@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<button onClick="location.href='FirstPage.jsp'" id="logout">Back</button>
+
 <div class="logo">
 <a href="FirstPage.jsp"> <img src="logo.png"> </a>
 </div>

@@ -6,6 +6,8 @@
 <link rel="stylesheet" type = "text/css" href="Vehicles.css">
 </head>
 <body>
+<button onClick="location.href='FirstPage.jsp'" id="logout">Log Out</button>
+
 <div class="logo">
 <a href="Index.jsp"> <img src="logo.png"> </a>
 </div>
