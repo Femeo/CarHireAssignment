@@ -37,7 +37,7 @@ for (VehicleBean i : Item) {
 	+ "<td id='price'>Max Weight: " + i.getMaxWeight() + "</td>"
 	+ "</tr>"
 	+ "<tr>"
-	+ "<td id='buying'><form action='book' method='post'>Enter Date From:<br><br>£"
+	+ "<td id='buying'><form action='mainServlet' method='post'>Enter Date From:<br><br>£"
 	+ "<input id='submit' type='date' name='startDate'><br><br>"
 	+ "<input type='date' name='endDate'><br><br>"
 	+ "<input type='hidden' name='VehicleID' value='" + i.getVehicleID() + "'>"

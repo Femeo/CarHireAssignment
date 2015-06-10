@@ -48,7 +48,7 @@ public class MainServlet extends HttpServlet {
 		String method = request.getParameter("go");
 		System.out.println(method);
 		switch (method) {
-		case "LoginCustoemr": 
+		case "LoginCustomer": 
 			LoginCustomer(request, response);
 			request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
 			break;

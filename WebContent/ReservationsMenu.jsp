@@ -20,9 +20,9 @@
 </div>
 <div id="main">
 <ul class="menu">
-<li><form action="AllReservations" method="post"><input type="submit" name="go" value="View All Reservations" id="viewReservations"></form></li>
-<br><br><li><form action="AllUpcomingReservations" method="post"><input type="submit" name="go" value="View all Upcoming Reservations" id="viewUpcomingReservations"></form></li>
-<br><br><li><form action="AllPreviousReservations" method="post"><input type="submit" name="go" value="View all Previous Reservations" id="viewPreviousReservations"></form></li>
+<li><form action="mainServlet" method="post"><input type="submit" name="go" value="View All Reservations" id="viewReservations"></form></li>
+<br><br><li><form action="mainServlet" method="post"><input type="submit" name="go" value="View all Upcoming Reservations" id="viewUpcomingReservations"></form></li>
+<br><br><li><form action="mainServlet" method="post"><input type="submit" name="go" value="View all Previous Reservations" id="viewPreviousReservations"></form></li>
 </ul>
 </div>
 </body>

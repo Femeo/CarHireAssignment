@@ -17,11 +17,11 @@
 </div>
 <nav id="categories">
 <ul>
-	<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="Category A"></form></li>
-	<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="Category B"></form></li>
-	<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="Category C"></form></li>
-	<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="Vans"></form></li>
-	<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="All"></form></li>
+	<li><form action="mainServlet" method="post"><input type="submit" name="go" value="Category A"></form></li>
+	<li><form action="mainServlet" method="post"><input type="submit" name="go" value="Category B"></form></li>
+	<li><form action="mainServlet" method="post"><input type="submit" name="go" value="Category C"></form></li>
+	<li><form action="mainServlet" method="post"><input type="submit" name="go" value="Vans"></form></li>
+	<li><form action="mainServlet" method="post"><input type="submit" name="go" value="All"></form></li>
 </ul>
 </nav>
 <nav id="main">
