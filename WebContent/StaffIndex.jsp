@@ -13,8 +13,8 @@
 <div class="nav">
 <a href="AddVehicle.jsp">Add Vehicle</a>
 <a href="RemoveVehicle.jsp">Remove Vehicle</a>
-<a href="Reservations.jsp">Reservations</a>
-<a href="AllVehicles.jsp">All Vehicles</a>
+<a href="ReservationsMenu.jsp">Reservations</a>
+<a href="AllVehicleView.jsp">All Vehicles</a>
 </div>
 
 </body>
