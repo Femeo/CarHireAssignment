@@ -10,10 +10,10 @@
   </servlet-mapping>
   <servlet>
       <servlet-name>SingleVehicleServlet</servlet-name>
-      <servlet-class>dwpbay.SingleVehicleServlet</servlet-class>
+      <servlet-class>carHireProject.SingleVehicleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>SingleItemServlet</servlet-name>
+      <servlet-name>SingleVehicleServlet</servlet-name>
       <url-pattern>/singleServlet</url-pattern>
   </servlet-mapping>
 </web-app>
