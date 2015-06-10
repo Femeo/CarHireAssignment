@@ -11,6 +11,10 @@ public class LoginBean {
 		this.username = username ;
 		this.password = password ;
 	}
+	
+	public LoginBean(){
+		
+	}
 
 	public int getCustomerID() {
 		return customerID;
