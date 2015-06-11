@@ -122,66 +122,50 @@ public class MainServlet extends HttpServlet {
 	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		try{
-			System.out.println("check if method prints");
 			String userName = request.getParameter("Username");
-			System.out.println(userName);
 			Statement statement = connection.createStatement();
-			System.out.println("TEST BBSBS");
-			ResultSet results = statement.executeQuery("Select * from customer_login where username = '" + userName + "';");
-			System.out.println(results.first());
-			System.out.println("TEST TWO ");
-			System.out.println(results.getString(1));
-			
-			
-			
-				
+			ResultSet results = statement.executeQuery("Select * from customer_login where username = '" + userName + "';");				
 				LoginBean currentUserObj = null;
 				if(results.getString(3).equals(request.getParameter("password"))){
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
 					session = request.getSession(true);
 					session.setAttribute("currentUser", currentUserObj);
 					response.sendRedirect("CustomerIndex.jsp");
-					System.out.println("FIRST IF ");
-					return;
-				
+					return;				
 				}else{
 					request.setAttribute("authenticated", false);
-					System.out.println("SECOND ELSE");
-				}
-			
-				
+				}		
 			}
 		catch (SQLException e ) {
-			System.out.println("1");
 			System.out.println(e);
 		}
 		catch (NullPointerException e){
-			System.out.println("2");
+			System.out.println(e);
 		}
 	}
 	
-	public void LoginStaff (HttpServletRequest request, HttpServletResponse response){
+	public void LoginStaff (HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		try{
 			String userName = request.getParameter("Username");
 			Statement statement = connection.createStatement();
-			ResultSet results = statement.executeQuery("Select * from staff_login where username = '" + userName + "';");
-			
-			
+			ResultSet results = statement.executeQuery("Select * from staff_login where username = '" + userName + "';");			
 				LoginBean currentUserObj = null;
-				if(results.getString(3).equals(request.getParameter("pass_word"))){
+				if(results.getString(3).equals(request.getParameter("password"))){
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
 					session = request.getSession(true);
 					session.setAttribute("currentUser", currentUserObj);
+					response.sendRedirect("StaffIndex.jsp");
 					return;
 				}
 				else{
 					request.setAttribute("authenticated",false);
-				}
-			
+				}			
 		}
 		catch(SQLException e){
-			System.out.println("error");
+			System.out.println(e);
+		}
+		catch(NullPointerException e){
 			System.out.println(e);
 		}
 	}
