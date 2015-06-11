@@ -17,6 +17,9 @@ public class ContractBean {
 		this.HiredFrom = HiredFrom ;
 		this.HiredUntill = HiredUntill ;
 	}
+	
+	public ContractBean(){}
+
 
 	public int getContractID() {
 		return ContractID;

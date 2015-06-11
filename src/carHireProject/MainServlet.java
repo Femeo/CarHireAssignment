@@ -30,8 +30,9 @@ public class MainServlet extends HttpServlet {
 		super.init(config);
 		
 			try{
+				System.out.println("1");
 				try{
-					Class.forName("com.mysql.jdbc.Drive");
+					Class.forName("com.mysql.jdbc.Driver");
 				}
 				catch (ClassNotFoundException e){
 					System.out.println("Class not found");
@@ -40,12 +41,14 @@ public class MainServlet extends HttpServlet {
 				statement = connection.createStatement();
 			}
 			catch(SQLException e){
+				System.out.println("2");
 				System.out.println("SQL exception");
 			}
 	}
 	
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String method = request.getParameter("go");
+		System.out.println("here?");
 		System.out.println(method);
 		switch (method) {
 		case "LoginCustomer": 
@@ -56,7 +59,7 @@ public class MainServlet extends HttpServlet {
 			LoginStaff(request, response);
 			request.getRequestDispatcher("StaffLogin.jsp").forward(request, response);
 			break;
-		case "addVehicle":
+		case "Add Vehicle":
 			addVehicle(request,response);
 			request.getRequestDispatcher("AddVehicle.jsp").forward(request, response);
 			break;
@@ -74,7 +77,12 @@ public class MainServlet extends HttpServlet {
 			break;
 		case "AvailableVehicles":
 			AvailableVehicles(request, response);
-			request.getRequestDispatcher("VehiclesMenu.jsp").forward(request, response);
+			request.getRequestDispatcher("AvailableVehicleView.jsp").forward(request, response);
+			break;
+		case "AllVehicles":
+			AllVehicles(request, response);
+			request.getRequestDispatcher("AllVehicleView.jsp").forward(request, response);
+			break;
 		
 			
 			
@@ -82,6 +90,12 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
+	private void AllVehicles(HttpServletRequest request,
+			HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void AvailableVehicles(HttpServletRequest request,
 			HttpServletResponse response) {
 		try{
@@ -151,6 +165,7 @@ public class MainServlet extends HttpServlet {
 			}
 		}
 		catch(SQLException e){
+			System.out.println("error");
 			System.out.println(e);
 		}
 	}
@@ -158,6 +173,7 @@ public class MainServlet extends HttpServlet {
 	private void addVehicle(HttpServletRequest request, HttpServletResponse response){
 		
 		try{
+			System.out.println("1");
 			String category = request.getParameter("Category");
 			String make = request.getParameter("Make");
 			String model = request.getParameter("Model");
@@ -169,7 +185,7 @@ public class MainServlet extends HttpServlet {
 			String picture = request.getParameter("Picture");
 			
 			PreparedStatement statement = connection.prepareStatement("insert into vehicles values(?,?,?,?,?,?,?,?,?,?);") ;
-			
+			System.out.println("2");
 			statement.setString(1, null);
 			statement.setString(2,  category);
 			statement.setString(3, make);
@@ -182,9 +198,10 @@ public class MainServlet extends HttpServlet {
 			statement.setString(10, picture);
 			
 			statement.execute();
-			
+			System.out.println("3");
 		}
 		catch(Exception e){
+			System.out.println("4");
 			System.out.println("Exception" + e);
 		}
 		
