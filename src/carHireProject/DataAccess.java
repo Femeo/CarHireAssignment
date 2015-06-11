@@ -11,7 +11,7 @@ public class DataAccess {
 	private Statement statement = null ;
 	
 	public DataAccess(String databaseLocation, String username, String password) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+	//	Class.forName("com.mysql.jdbc.Driver");
 		connect = DriverManager.getConnection(databaseLocation, username, password) ;
 		statement = connect.createStatement() ;
 	}

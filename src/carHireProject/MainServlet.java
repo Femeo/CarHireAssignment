@@ -29,14 +29,11 @@ public class MainServlet extends HttpServlet {
 		
 		super.init(config);
 		
+
 			try{
-				System.out.println("1");
-				try{
 					Class.forName("com.mysql.jdbc.Driver");
-				}
-				catch (ClassNotFoundException e){
-					System.out.println("Class not found");
-				}
+				
+				
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire","root","");
 				statement = connection.createStatement();
 			}
@@ -44,14 +41,18 @@ public class MainServlet extends HttpServlet {
 				System.out.println("2");
 				System.out.println("SQL exception");
 			}
+			catch (ClassNotFoundException e){
+				System.out.println("3");
+				System.out.println("Class not found here");
+			}
 	}
 	
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String method = request.getParameter("go");
-		System.out.println("here?");
 		System.out.println(method);
-		switch (method) {
-		case "LoginCustomer": 
+		switch(method) {
+		case "Login": 
+			System.out.println("login system");
 			LoginCustomer(request, response);
 			request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
 			break;
@@ -83,6 +84,10 @@ public class MainServlet extends HttpServlet {
 			AllVehicles(request, response);
 			request.getRequestDispatcher("AllVehicleView.jsp").forward(request, response);
 			break;
+			default:
+				System.out.println("nope, nothing here");
+				System.out.println("good luck getting this to work");
+				break;
 		
 			
 			
@@ -137,14 +142,18 @@ public class MainServlet extends HttpServlet {
 				}
 			}
 		catch (SQLException e ) {
+			System.out.println("1");
 			System.out.println(e);
+		}
+		catch (NullPointerException e){
+			System.out.println("2");
 		}
 	}
 	
 	public void LoginStaff (HttpServletRequest request, HttpServletResponse response){
 		
 		try{
-			String userName = request.getParameter("username");
+			String userName = request.getParameter("Username");
 			Statement statement = connection.createStatement();
 			ResultSet results = statement.executeQuery("Select * from staff_login where username = '" + userName + "';");
 			
@@ -174,19 +183,19 @@ public class MainServlet extends HttpServlet {
 		
 		try{
 			System.out.println("1");
-			String category = request.getParameter("Category");
-			String make = request.getParameter("Make");
-			String model = request.getParameter("Model");
-			Double engineSize = Double.parseDouble(request.getParameter("EngineSize"));
-			Double pricePerDay = Double.parseDouble(request.getParameter("PricePerDay"));
-			String fuelType = request.getParameter("FuelType");
-			String numberOfDoors = request.getParameter("NoOfDoors");
-			String maxWeight = request.getParameter("MaxWeight");
-			String picture = request.getParameter("Picture");
+			String category = request.getParameter("category");
+			String make = request.getParameter("make");
+			String model = request.getParameter("model");
+			Double engineSize = Double.parseDouble(request.getParameter("engine"));
+			Double pricePerDay = Double.parseDouble(request.getParameter("price"));
+			String fuelType = request.getParameter("fuel");
+			String numberOfDoors = request.getParameter("doors");
+			String maxWeight = request.getParameter("max");
+			String picture = request.getParameter("picture");
 			
 			PreparedStatement statement = connection.prepareStatement("insert into vehicles values(?,?,?,?,?,?,?,?,?,?);") ;
 			System.out.println("2");
-			statement.setString(1, null);
+			
 			statement.setString(2,  category);
 			statement.setString(3, make);
 			statement.setString(4, model);
