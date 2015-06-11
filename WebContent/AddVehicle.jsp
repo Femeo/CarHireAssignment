@@ -43,7 +43,7 @@
 		Picture (URL):   <input type="text" name="picture">
 		<br><br>
 		<br><br>
-		<input type="submit" value="Add Vehicle" name="go" >
+		<input type="submit" value="AddVehicle" name="go" >
 		</form>
 </div>
 	

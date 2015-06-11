@@ -61,7 +61,7 @@ public class MainServlet extends HttpServlet {
 			LoginStaff(request, response);
 			//request.getRequestDispatcher("StaffLogin.jsp").forward(request, response);
 			break;
-		case "Add Vehicle":
+		case "AddVehicle":
 			addVehicle(request,response);
 			request.getRequestDispatcher("AddVehicle.jsp").forward(request, response);
 			break;
@@ -177,19 +177,29 @@ public class MainServlet extends HttpServlet {
 		
 		try{
 			System.out.println("1");
+			String VehicleID = request.getParameter("ID");
+			System.out.println(VehicleID);
 			String category = request.getParameter("category");
+			System.out.println(category);
 			String make = request.getParameter("make");
+			System.out.println(make);
 			String model = request.getParameter("model");
+			System.out.println(model);
 			Double engineSize = Double.parseDouble(request.getParameter("engine"));
+			System.out.println(engineSize);
 			Double pricePerDay = Double.parseDouble(request.getParameter("price"));
+			System.out.println(pricePerDay);
 			String fuelType = request.getParameter("fuel");
+			System.out.println(fuelType);
 			String numberOfDoors = request.getParameter("doors");
+			System.out.println(numberOfDoors);
 			String maxWeight = request.getParameter("max");
+			System.out.println(maxWeight);
 			String picture = request.getParameter("picture");
-			
+			System.out.println(picture);
 			PreparedStatement statement = connection.prepareStatement("insert into vehicles values(?,?,?,?,?,?,?,?,?,?);") ;
 			System.out.println("2");
-			
+			statement.setString(1, VehicleID);
 			statement.setString(2,  category);
 			statement.setString(3, make);
 			statement.setString(4, model);
