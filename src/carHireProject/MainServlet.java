@@ -120,7 +120,7 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
-	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void LoginCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		System.out.println("see if this prints");
 		try{
 			System.out.println("in try");
@@ -152,9 +152,10 @@ public class MainServlet extends HttpServlet {
 		catch (NullPointerException e){
 			System.out.println("2");
 		}
+		System.out.println("maybe this?");
 	}
 	
-	public void LoginStaff (HttpServletRequest request, HttpServletResponse response){
+	public void LoginStaff(HttpServletRequest request, HttpServletResponse response){
 		
 		try{
 			String userName = request.getParameter("Username");
