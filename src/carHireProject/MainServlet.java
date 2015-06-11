@@ -54,6 +54,7 @@ public class MainServlet extends HttpServlet {
 		case "Login": 
 			System.out.println("login system");
 			LoginCustomer(request, response);
+			System.out.println("past method");
 			request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
 			break;
 		case "LoginStaff":
@@ -119,9 +120,10 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
-	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response){
-		
+	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response) throws IOException{
+		System.out.println("see if this prints");
 		try{
+			System.out.println("in try");
 			String userName = request.getParameter("username");
 			Statement statement = connection.createStatement();
 			ResultSet results = statement.executeQuery("Select * from customer_login where username = ' " + userName + "';");
@@ -135,11 +137,13 @@ public class MainServlet extends HttpServlet {
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
 					session = request.getSession(true);
 					session.setAttribute("currentUser", currentUserObj);
+					response.sendRedirect("CustomerIndex.jsp");
 					return;
 				}else{
 					request.setAttribute("authenticated", false);
 				}
 				}
+			System.out.println("we're in!");
 			}
 		catch (SQLException e ) {
 			System.out.println("1");
