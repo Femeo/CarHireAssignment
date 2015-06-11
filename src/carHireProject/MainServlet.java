@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
 					Class.forName("com.mysql.jdbc.Driver");
 				
 				
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire","root","");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire1","root","");
 				statement = connection.createStatement();
 			}
 			catch(SQLException e){
@@ -54,11 +54,11 @@ public class MainServlet extends HttpServlet {
 		case "Login": 
 			System.out.println("login system");
 			LoginCustomer(request, response);
-			request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
+			//request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
 			break;
 		case "LoginStaff":
 			LoginStaff(request, response);
-			request.getRequestDispatcher("StaffLogin.jsp").forward(request, response);
+			//request.getRequestDispatcher("StaffLogin.jsp").forward(request, response);
 			break;
 		case "Add Vehicle":
 			addVehicle(request,response);
@@ -119,27 +119,37 @@ public class MainServlet extends HttpServlet {
 		}
 	}
 	
-	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response){
+	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		try{
-			String userName = request.getParameter("username");
+			System.out.println("check if method prints");
+			String userName = request.getParameter("Username");
+			System.out.println(userName);
 			Statement statement = connection.createStatement();
-			ResultSet results = statement.executeQuery("Select * from customer_login where username = ' " + userName + "';");
+			System.out.println("TEST BBSBS");
+			ResultSet results = statement.executeQuery("Select * from customer_login where username = '" + userName + "';");
+			System.out.println(results.first());
+			System.out.println("TEST TWO ");
+			System.out.println(results.getString(1));
 			
-			if (!results.isBeforeFirst()){
-				request.setAttribute("authenticated", false);
-			}else{
-				results.next();
+			
+			
+				
 				LoginBean currentUserObj = null;
-				if(results.getString(3).equals(request.getParameter("pass_word"))){
+				if(results.getString(3).equals(request.getParameter("password"))){
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
 					session = request.getSession(true);
 					session.setAttribute("currentUser", currentUserObj);
+					response.sendRedirect("CustomerIndex.jsp");
+					System.out.println("FIRST IF ");
 					return;
+				
 				}else{
 					request.setAttribute("authenticated", false);
+					System.out.println("SECOND ELSE");
 				}
-				}
+			
+				
 			}
 		catch (SQLException e ) {
 			System.out.println("1");
@@ -157,10 +167,7 @@ public class MainServlet extends HttpServlet {
 			Statement statement = connection.createStatement();
 			ResultSet results = statement.executeQuery("Select * from staff_login where username = '" + userName + "';");
 			
-			if(!results.isBeforeFirst()){
-				request.setAttribute("authenticated",  false);
-			}else{
-				results.next();
+			
 				LoginBean currentUserObj = null;
 				if(results.getString(3).equals(request.getParameter("pass_word"))){
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
@@ -171,7 +178,7 @@ public class MainServlet extends HttpServlet {
 				else{
 					request.setAttribute("authenticated",false);
 				}
-			}
+			
 		}
 		catch(SQLException e){
 			System.out.println("error");
@@ -299,6 +306,11 @@ public class MainServlet extends HttpServlet {
 			System.out.println("Exception" + e);
 			
 		}
+		
+	}
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp); 
+	
 	}
 }
 

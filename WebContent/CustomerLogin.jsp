@@ -15,7 +15,7 @@
 <div class="login">
       <h1>Customer Login</h1>
       <form method="post" action="mainServlet">
-        <p><input type="text" name="login" value="" placeholder="Username"></p>
+        <p><input type="text" name="Username" value="" placeholder="Username"></p>
         <p><input type="password" name="password" value="" placeholder="Password"></p>
         <input class="submit" type="submit" name="go" value="Login">
       </form>
