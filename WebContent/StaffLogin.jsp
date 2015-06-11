@@ -18,7 +18,7 @@
       <form method="post" action="mainServlet">
         <p><input type="text" name="Username" value="" placeholder="Username"></p>
         <p><input type="password" name="password" value="" placeholder="Password"></p>
-        <input class="submit" type="submit" name="go" value="Staff Login">
+        <input class="submit" type="submit" name="go" value="StaffLogin">
       </form>
 </div>
 
