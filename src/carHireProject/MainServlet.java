@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
 					Class.forName("com.mysql.jdbc.Driver");
 				
 				
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire1","root","");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire","root","");
 				statement = connection.createStatement();
 			}
 			catch(SQLException e){
