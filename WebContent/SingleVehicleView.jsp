@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -22,7 +23,7 @@ List<VehicleBean> Vehicle = (List<VehicleBean>)request.getAttribute("Results");
 for (VehicleBean i : Item) {
 	out.println("<tr>"
 	+ "<td rowspan='5' id='IndividualPicture'><img src='" + i.getPicture() + "'></td>"
-	+ "<td id='name'>Category: " + i.getCategory() + "- " + i.getMake() + " " + i.getModel() + " " + i.getEngineSize() "</td>"	
+	+ "<td id='name'>Category: " + i.getCategory() + "- " + i.getMake() + " " + i.getModel() + " " + i.getEngineSize() + "</td>"	
 	+ "</tr>"
 	+ "<tr>"
 	+ "<td id='price'>Price Per Day: £" + i.getPrice() + "</td>"
