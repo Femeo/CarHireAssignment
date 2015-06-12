@@ -52,7 +52,7 @@ public class MainServlet extends HttpServlet {
 		System.out.println(method);
 		switch(method) {
 		case "Login": 
-			System.out.println("login system");
+			System.out.println("login systems");
 			LoginCustomer(request, response);
 			//request.getRequestDispatcher("CustomerLogin.jsp").forward(request, response);
 			break;
@@ -121,11 +121,10 @@ public class MainServlet extends HttpServlet {
 	}
 	
 	public void LoginCustomer (HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
 		try{
 			String userName = request.getParameter("Username");
 			Statement statement = connection.createStatement();
-			ResultSet results = statement.executeQuery("Select * from customer_login where username = '" + userName + "';");				
+			ResultSet results = statement.executeQuery("Select * from customer_login where username = '" + userName + "';");	
 				LoginBean currentUserObj = null;
 				if(results.getString(3).equals(request.getParameter("password"))){
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
@@ -146,13 +145,10 @@ public class MainServlet extends HttpServlet {
 	}
 	
 	public void LoginStaff (HttpServletRequest request, HttpServletResponse response) throws IOException{
-		System.out.println("do we get here?");
 		try{
 			String userName = request.getParameter("Username");
-			System.out.println(userName);
 			Statement statement = connection.createStatement();
 			ResultSet results = statement.executeQuery("Select * from staff_login where username = '" + userName + "';");
-			System.out.println(results.first());
 				LoginBean currentUserObj = null;
 				if(results.getString(3).equals(request.getParameter("password"))){
 					currentUserObj = new LoginBean(results.getInt(1), results.getString(2), results.getString(3));
@@ -176,29 +172,17 @@ public class MainServlet extends HttpServlet {
 	private void addVehicle(HttpServletRequest request, HttpServletResponse response){
 		
 		try{
-			System.out.println("1");
-			String VehicleID = request.getParameter("ID");
-			System.out.println(VehicleID);
+			String VehicleID = null;			
 			String category = request.getParameter("category");
-			System.out.println(category);
 			String make = request.getParameter("make");
-			System.out.println(make);
 			String model = request.getParameter("model");
-			System.out.println(model);
 			Double engineSize = Double.parseDouble(request.getParameter("engine"));
-			System.out.println(engineSize);
 			Double pricePerDay = Double.parseDouble(request.getParameter("price"));
-			System.out.println(pricePerDay);
 			String fuelType = request.getParameter("fuel");
-			System.out.println(fuelType);
 			String numberOfDoors = request.getParameter("doors");
-			System.out.println(numberOfDoors);
 			String maxWeight = request.getParameter("max");
-			System.out.println(maxWeight);
 			String picture = request.getParameter("picture");
-			System.out.println(picture);
 			PreparedStatement statement = connection.prepareStatement("insert into vehicles values(?,?,?,?,?,?,?,?,?,?);") ;
-			System.out.println("2");
 			statement.setString(1, VehicleID);
 			statement.setString(2,  category);
 			statement.setString(3, make);
@@ -208,13 +192,10 @@ public class MainServlet extends HttpServlet {
 			statement.setString(7,  fuelType);
 			statement.setString(8, numberOfDoors);
 			statement.setString(9, maxWeight);
-			statement.setString(10, picture);
-			
+			statement.setString(10, picture);			
 			statement.execute();
-			System.out.println("3");
 		}
 		catch(Exception e){
-			System.out.println("4");
 			System.out.println("Exception" + e);
 		}
 		
