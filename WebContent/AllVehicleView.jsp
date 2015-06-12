@@ -1,4 +1,5 @@
-<%@ page import="carHireProject.VehicleBean" %>
+<%@ page import="carHireProject.VehicleBean"
+import="java.util.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,9 +14,8 @@
 </div>
 <div class="nav">
 <a href="VehiclesMenu.jsp">Vehicles</a>
-<a href="#">Book</a>
-<a href="#">Account</a>
-<a href="#">Staff</a>
+<a href="BookNow.jsp">Book</a>
+<a href="AccountsMenu.jsp">Account</a>
 </div>
 <nav id="categories">
 <ul>
@@ -33,10 +33,7 @@
 List<VehicleBean> allVehicles = (List<VehicleBean>)request.getAttribute("Results");
 for (VehicleBean i : allVehicles) {
 	out.println("<tr>"
-	+ "<td id='picture'><img src='" + i.getPicture() + "'></td>"
-	+ "</tr>"
-	+ "<tr>"
-	+ "<td id='name'>"  + i.getMake() + i.getModel + "</td>"
+	+ "<td id='name'>"  + i.getMake() + " " + i.getModel() + "</td>"
 	+ "</tr>"
 	+ "<tr>"
 	+ "<td id='price'> Price Per Day: £"  + i.getPricePerDay() + "</td>"

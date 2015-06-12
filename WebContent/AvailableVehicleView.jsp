@@ -1,3 +1,6 @@
+<%@ page import="carHireProject.VehicleBean"
+import="java.util.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +14,8 @@
 </div>
 <div class="nav">
 <a href="VehiclesMenu.jsp">Vehicles</a>
-<a href="#">Book</a>
-<a href="#">Account</a>
-<a href="#">Staff</a>
+<a href="BookNow.jsp">Book</a>
+<a href="AccountsMenu.jsp">Account</a>
 </div>
 <nav id="categories">
 <ul>

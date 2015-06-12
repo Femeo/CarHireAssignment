@@ -202,11 +202,9 @@ public class MainServlet extends HttpServlet {
 	}
 	
 	private void ListAllVehicles(HttpServletRequest request, HttpServletResponse response){
-		System.out.println("here");
+
 		try{
-			System.out.println("1");
 			ResultSet rs = statement.executeQuery("SELECT * from vehicles");
-			System.out.println(rs.first());
 			List<VehicleBean> allVehicles = new ArrayList<VehicleBean>();
 			while (rs.next()){
 				int VehicleID = Integer.parseInt(rs.getString(1));
@@ -221,7 +219,7 @@ public class MainServlet extends HttpServlet {
 
 				
 				VehicleBean newVehicle = new VehicleBean(VehicleID, category, Make, model, engineSize, pricePerDay, FuelType, Doors, Weight);
-				System.out.println(newVehicle.getVehicleID() + newVehicle.getMake() + newVehicle.getModel());
+				
 				allVehicles.add(newVehicle);
 			}
 			request.setAttribute("Results", allVehicles);
