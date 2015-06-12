@@ -1,3 +1,6 @@
+<%@ page import="carHireProject.ContractBean"
+import="java.util.*" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,9 +37,6 @@ for (ContractBean i : allContracts) {
 	+ "</tr>"
 	+ "<tr>"
 	+ "<td id='HiredUntill'>" + i.getHiredUntill() + "</td>"
-	+ "</td>"
-	+ "<tr>"
-	+ "<td><form action='singleServlet' method='post'><input type='hidden' name='vehicleID' value='" + i.getVehicleID() + "'><input type='submit' id='hire' value='Hire Vehicle'></form></td>"
 	+ "</tr>");
 	
 }
