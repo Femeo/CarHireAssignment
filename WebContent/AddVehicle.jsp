@@ -20,10 +20,10 @@
 <a href="AllVehicles.jsp">All Vehicles</a>
 </div>
 
+
 <div class="Form">
+<h1>Add A Vehicle</h1><br><br>
 		<form action="mainServlet" method="post">
-		Vehicle ID: 	 <input type="text" name="ID"> 
-		<br><br>
 		Category:        <input type="text" name="category">
 		<br><br>
 		Make:            <input type="text" name="make">
@@ -40,7 +40,7 @@
 		<br><br>
 		Maximum Weight:  <input type="text" name="max">
 		<br><br>
-		Picture (URL):   <input type="text" name="picture">
+		Picture:   <input type="file" name="picture">
 		<br><br>
 		<br><br>
 		<input type="submit" value="AddVehicle" name="go" >
