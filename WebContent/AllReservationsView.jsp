@@ -34,9 +34,6 @@ for (ContractBean i : allContracts) {
 	+ "</tr>"
 	+ "<tr>"
 	+ "<td id='HiredUntill'>" + i.getHiredUntill() + "</td>"
-	+ "</td>"
-	+ "<tr>"
-	+ "<td><form action='singleServlet' method='post'><input type='hidden' name='vehicleID' value='" + i.getVehicleID() + "'><input type='submit' id='hire' value='Hire Vehicle'></form></td>"
 	+ "</tr>");
 	
 }
