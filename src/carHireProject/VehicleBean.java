@@ -12,7 +12,7 @@ public class VehicleBean {
 	private String NoOfDoors ;
 	private String MaxWeight ;
 	
-	public VehicleBean (int VehicleID, String category, String Make, String Model, float EngineSize, float PricePerDay, 
+	public VehicleBean (int VehicleID, String Category, String Make, String Model, float EngineSize, float PricePerDay, 
 						String FuelType, String NoOfDoors, String MaxWeight) {
 		this.VehicleID = VehicleID ;
 		this.Category = Category ; 

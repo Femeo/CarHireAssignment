@@ -26,14 +26,14 @@
 
 <ul class="parent-menu">
 
-<li><form action="AllVehicles" method="post"><input type="submit" name="go" value="View All Vehicles" id="viewVehicles"></form></li>
+<li><form action="mainServlet" method="post"><input type="submit" name="go" value="ViewAllVehicles" id="viewVehicles"></form></li>
 <li><form><input type="submit" value="View All Available Vehicles" id="viewVehicles"></form>
 
 	<ul>
-	<li><form action="AvailableVehicles" method="post">
+	<li><form action="mainServlet" method="post">
 	I Want A Vehicle From: <br><input type="date" name="startDate"><br><br>
 	Until:<br><input type="date" name="endDate"><br><br>
-	<input type="submit" name="go" value="Get Vehicles"></form></li>
+	<input type="submit" name="go" value="AvailableVehicles"></form></li>
 	</ul>
 </li>
 </ul>

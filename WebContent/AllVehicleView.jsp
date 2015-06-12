@@ -1,3 +1,5 @@
+<%@ page import="carHireProject.VehicleBean" %>
+
 <!DOCTYPE html>
 <html>
 <head>
