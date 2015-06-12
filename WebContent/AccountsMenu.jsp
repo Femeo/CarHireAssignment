@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Vehicles Menu</title>
-<link rel="stylesheet" type = "text/css" href="Index.css">
+<link rel="stylesheet" type = "text/css" href="Vehicles.css">
 </head>
 <body>
 
