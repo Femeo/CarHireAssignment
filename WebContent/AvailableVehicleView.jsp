@@ -29,10 +29,14 @@ import="java.util.*" %>
 <nav id="main">
 <table class="vehicles">
 <%
+
 List<VehicleBean> allVehicles = (List<VehicleBean>)request.getAttribute("Results");
 for (VehicleBean i : allVehicles) {
-	out.println( "<tr>"
-	+ "<td id='name'>"  + i.getMake() + " " + i.getModel() + "</td>"
+	out.println("<tr>"
+	+ "<td id='picture'><img src='" + i.getPicture() + "'></td>"
+	+ "</tr>"
+	+ "<tr>"
+	+ "<td id='name'>"  + i.getMake() + i.getModel + "</td>"
 	+ "</tr>"
 	+ "<tr>"
 	+ "<td id='price'> Price Per Day: £"  + i.getPricePerDay() + "</td>"
