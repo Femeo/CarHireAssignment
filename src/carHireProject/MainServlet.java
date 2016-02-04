@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.DateFormatter;
 
 public class MainServlet extends HttpServlet {
 	HttpSession session; 
@@ -31,10 +32,11 @@ public class MainServlet extends HttpServlet {
 		
 
 			try{
+				System.out.println("2");
 					Class.forName("com.mysql.jdbc.Driver");
 				
 				
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire","root","");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/carhire","root","root");
 				statement = connection.createStatement();
 			}
 			catch(SQLException e){
@@ -105,11 +107,47 @@ public class MainServlet extends HttpServlet {
 	private void AvailableVehicles(HttpServletRequest request,
 			HttpServletResponse response) {
 		try{
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			 System.out.println("here");
+			 			LocalDate firstDate = LocalDate.parse(request.getParameter("startDate"),formatter);
+			 			System.out.println(firstDate);
+			 			LocalDate secondDate = LocalDate.parse(request.getParameter("endDate"),formatter);
+			 			System.out.println(secondDate);
+			 			
+			 			ResultSet rs = statement.executeQuery("select * from vehicles" +
+			 		    "where not exists ( select 1 from contracts " +
+			 		   " where vehicles.vehicleID = contracts.vehicleID and" +
+			 			"(cast(firstDate as date) between hiredFrom and hiredUntill or " +
+			 		   " cast(secondDate as date) between hiredFrom and hiredUntill or " +
+			 			" cast(firstDate as date) < hiredFrom and cast(secondDate as date) > hiredUntill)" +
+			 		    " order by vehicles.vehicleID);");
+			 	
+			 			List<VehicleBean> allVehicles = new ArrayList<VehicleBean> ();
+			 			while (rs.next()){
+			 				int VehicleID = Integer.parseInt(rs.getString(1));
+			 				String category = rs.getString(2);
+			 				String Make = rs.getString(3);
+			 				String model = rs.getString(4);
+			 				float engineSize = Float.parseFloat(rs.getString(5));				
+			 				float pricePerDay = Float.parseFloat(rs.getString(6));
+			 				String FuelType = rs.getString(7);
+			 				String Doors = rs.getString(8);
+			 				String Weight = rs.getString(9);
+			 				
+			 				VehicleBean newVehicle = new VehicleBean(VehicleID, category, Make, model, engineSize, pricePerDay, FuelType, Doors, Weight);
+			 				
+			 				allVehicles.add(newVehicle);
+			 			}
+			 			request.setAttribute("Results", allVehicles);
+			 				
+			 			}
+			 			
+			 			catch(Exception e){
+			 				System.out.println("Exception" + e);
+			 			}
 			
-			
-		}
-		catch(Exception e){}
 	}
+
 
 	public void destroy() {
 		if(connection != null){
